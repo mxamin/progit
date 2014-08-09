@@ -19,6 +19,11 @@ branch
 ------
 
 		انشعاب
+		
+checking
+--------
+
+		بررسی
 
 checkout
 --------
@@ -70,6 +75,21 @@ metadata
 --------
 
 		metadata
+		
+modified
+--------
+
+		اصلاح شده
+		
+reference
+---------
+
+		ارجاع
+
+unmodified
+----------
+
+		اصلاح نشده
 
 option
 ------
@@ -85,7 +105,7 @@ package
 patch
 -----
 
-وصله
+		وصله
 
 platform
 --------
@@ -125,19 +145,24 @@ staging area
 state
 -----
 
-وضعیت
+		وضعیت
+
+tracking
+--------
+
+		ردگیری
 
 version
 -------
 
-نسخه
+		نسخه
 
 workflow
 --------
 
-جریان کاری
+		جریان کاری
 
 working directory
 -----------------
 
-پوشه در حال کار
+		پوشه در حال کار
