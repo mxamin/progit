@@ -79,11 +79,11 @@ Insert 18333fig0201.png
 
 ### ردگیری فایلهای جدید ###
 
-In order to begin tracking a new file, you use the command `git add`. To begin tracking the `README` file, you can run this:
+جهت ردگیری فایلی جدید از دستور `git add` استفاده میشود. با اجرای دستور ذیل ردگیری فایل `README` آغاز میگردد:
 
 	$ git add README
 
-If you run your status command again, you can see that your `README` file is now tracked and staged:
+حال اگر دوباره دستور وضعیت را اجرا کنید، مشاهده خواهید کرد که فایل `README` هم ردگیری و هم stage شده است:
 
 	$ git status
 	On branch master
@@ -92,12 +92,11 @@ If you run your status command again, you can see that your `README` file is now
 	
 	        new file:   README
 	
+از آن جهت که نام فایل در بخش ”Changes to be committed“آورده شده است، بیانگر آن است که فایل stage شده است. حال اگر در این لحظه commitای انجام دهید، نسخه فایل در لحظه اجرای دستور `git add` همان نسخه ای است که در تصویر لحظه ای تاریخی قرار میگیرد. اگر به خاطر داشته باشید، هنگامی که دستور `git init` را اجرا نمودید، بلافاصله بعد از آن دستور `git add (files)` را اجرا کردید — این عمل بدان جهت بود تا ردگیری فایلهای موجود در پوشه موردنظر آغاز گردد. دستور `git add` به عنوان ورودی مسیر یک فایل یا مسیر یک پوشه را دریافت میکند؛ در صورتی که ورودی مسیر یک پوشه باشد، تمام فایلهای موجود در آن به صورت بازگشتی اضافه خواهند شد.
 
-You can tell that it’s staged because it’s under the “Changes to be committed” heading. If you commit at this point, the version of the file at the time you ran `git add` is what will be in the historical snapshot. You may recall that when you ran `git init` earlier, you then ran `git add (files)` — that was to begin tracking files in your directory. The `git add` command takes a path name for either a file or a directory; if it’s a directory, the command adds all the files in that directory recursively.
+### Stage کردن فایلهای اصلاح شده ###
 
-### Staging Modified Files ###
-
-Let’s change a file that was already tracked. If you change a previously tracked file called `benchmarks.rb` and then run your `status` command again, you get something that looks like this:
+حال بیایید فایلی را تغییر دهیم که از قبل ردگیری شده است. فرض کنید فایلی با نام `benchmarks.rb` از قبل ردگیری شده است و تغییراتی روی آن انجام گرفته است، حال با اجرای دوباره دستور `status` خواهیم داشت:
 
 	$ git status
 	On branch master
@@ -111,9 +110,8 @@ Let’s change a file that was already tracked. If you change a previously track
 	  (use "git checkout -- <file>..." to discard changes in working directory)
 	
 	        modified:   benchmarks.rb
-	
 
-The `benchmarks.rb` file appears under a section named “Changes not staged for commit” — which means that a file that is tracked has been modified in the working directory but not yet staged. To stage it, you run the `git add` command (it’s a multipurpose command — you use it to begin tracking new files, to stage files, and to do other things like marking merge-conflicted files as resolved). Let’s run `git add` now to stage the `benchmarks.rb` file, and then run `git status` again:
+فایل `benchmarks.rb` در بخشی با نام ”Changes not staged for commit“ قرار گرفته است — بدین معنی که فایلی که از قبل ردگیری شده است در پوشه در حال کار اصلاح شده، ولی هنوز stage نشده است. برای stage کردن فایل مذکور کافی است دستور `git add` را اجرا کنید (این دستور، دستوری چند منظوره است — جهت شروع ردگیری فایلهای جدید، stage کردن فایلها و دیگر موارد مانند نشانه گذاری فایلهای merge-conflicted تحت عنوان resolved استفاده میگردد). حال بیایید جهت stage کردن فایل `benckmarks.rb` دستور `git add` و سپس دوباره دستور `git status` را اجرا کنیم:
 
 	$ git add benchmarks.rb
 	$ git status
@@ -123,9 +121,8 @@ The `benchmarks.rb` file appears under a section named “Changes not staged for
 	
 	        new file:   README
 	        modified:   benchmarks.rb
-	
 
-Both files are staged and will go into your next commit. At this point, suppose you remember one little change that you want to make in `benchmarks.rb` before you commit it. You open it again and make that change, and you’re ready to commit. However, let’s run `git status` one more time:
+هر دو فایلها stage شده اند و در commit بعدی قرار میگیرند. فرض کنید در این لحظه به یاد می آورید که میخواهید قبل از انجام commit تغییر کوچکی در `bechmarks.rb` اعمال کنید. بدین منظور دوباره فایل را باز کرده و تغییر را انجام میدهید، حال آماده اجرای دستور commit هستید. صبر کنید، بیایید دستور `git status` را برای بار دیگر اجرا کنیم:	
 
 	$ vim benchmarks.rb
 	$ git status
@@ -141,10 +138,9 @@ Both files are staged and will go into your next commit. At this point, suppose 
 	  (use "git checkout -- <file>..." to discard changes in working directory)
 	
 	        modified:   benchmarks.rb
+
+چه اتفاقی افتاد؟ `benchmarks.rb` هم در بخش stage شده ها و هم در بخش stage نشده ها قرار گرفته است. چگونه این امر امکان دارد؟ به نظر میرسد هنگامی که دستور `git add` را اجرا کردید، Git فایل را با همان حالت در وضعیت stage قرار میدهد. اگر commitای انجام دهید، نسخه فایل `benchmarks.rb` که در commit قرار میگیرد همان نسخه ای است که در هنگام اجرای دستور `git add` دارا بود، نه نسخه ای از فایل که در لحظه اجرای `git commit` در پوشه در حال کار موجود است. اگر بعد از اجرای `git add` اصلاحی روی فایل انجام دادید، برای stage کردن آخرین نسخه فایل  مذکور لازم است دستور `git add` دوباره اجرا گردد:
 	
-
-What the heck? Now `benchmarks.rb` is listed as both staged and unstaged. How is that possible? It turns out that Git stages a file exactly as it is when you run the `git add` command. If you commit now, the version of `benchmarks.rb` as it was when you last ran the `git add` command is how it will go into the commit, not the version of the file as it looks in your working directory when you run `git commit`. If you modify a file after you run `git add`, you have to run `git add` again to stage the latest version of the file:
-
 	$ git add benchmarks.rb
 	$ git status
 	On branch master
@@ -154,8 +150,7 @@ What the heck? Now `benchmarks.rb` is listed as both staged and unstaged. How is
 	        new file:   README
 	        modified:   benchmarks.rb
 	
-
-### Ignoring Files ###
+### نادیده گرفتن فایلها ###
 
 Often, you’ll have a class of files that you don’t want Git to automatically add or even show you as being untracked. These are generally automatically generated files such as log files or files produced by your build system. In such cases, you can create a file listing patterns to match them named `.gitignore`.  Here is an example `.gitignore` file:
 

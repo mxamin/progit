@@ -55,6 +55,11 @@ diff
 ----
 
 		diff
+		
+ignore
+------
+
+		نادیده گرفتن
 
 link
 ----
@@ -70,6 +75,11 @@ merge
 -----
 
 		merge
+		
+merge-conflicted
+----------------
+
+		merge-conflicted
 
 metadata
 --------
@@ -111,6 +121,11 @@ platform
 --------
 
 		platform
+		
+pull
+----
+
+		pull
 
 push
 ----
@@ -125,7 +140,12 @@ remote repository
 repository
 ----------
 
-		مخزن	
+		مخزن
+		
+resolved
+--------
+
+		resolved
 
 revision
 --------
@@ -136,6 +156,11 @@ snapshot
 --------
 
 		تصویر لحظه‌ای
+		
+staged
+------
+
+		staged
 
 staging area
 ------------
@@ -146,11 +171,26 @@ state
 -----
 
 		وضعیت
+		
+tracked
+-------
+
+		ردگیری شده
 
 tracking
 --------
 
 		ردگیری
+		
+unstaged
+--------
+
+		unstaged
+		
+untracked
+---------
+
+		ردگیری نشده
 
 version
 -------
