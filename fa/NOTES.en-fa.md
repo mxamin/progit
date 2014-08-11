@@ -13,196 +13,215 @@
 archive
 -------
 
-		بایگانی
+	بایگانی
 
 branch
 ------
 
-		انشعاب
+	انشعاب
+		
+build
+-----
+
+	ساخته شدن
 		
 checking
 --------
 
-		بررسی
+	بررسی
 
 checkout
 --------
 
-		checkout
+	checkout
 
 checksum
 --------
 
-		checksum
+	checksum
 
 clone
 -----
 
-		clone
+	clone
 
 
 commit
 ------
 
-		commit
+	commit
 
 customize
 ---------
 
-		شخصی‌سازی
+	شخصی‌سازی
 
 diff
 ----
 
-		diff
+	diff
 		
 ignore
 ------
 
-		نادیده گرفتن
+	نادیده گرفتن
 
 link
 ----
 
-		پیوند
+	پیوند
+		
+log
+---
+
+	log
 
 manpage
 -------
 
-		صفحه راهنما
+	صفحه راهنما
+
+mark
+----
+
+	نشانه گذاری
 
 merge
 -----
 
-		merge
+	merge
 		
 merge-conflicted
 ----------------
 
-		merge-conflicted
+	merge-conflicted
 
 metadata
 --------
 
-		metadata
+	metadata
 		
 modified
 --------
 
-		اصلاح شده
+	اصلاح شده
 		
 reference
 ---------
 
-		ارجاع
+	ارجاع
+
+shell
+-----
+
+	پوسته
 
 unmodified
 ----------
 
-		اصلاح نشده
+	اصلاح نشده
 
 option
 ------
 
-		گزینه
+	گزینه
 
 package
 -------
 
-		بسته
-
+	بسته
 
 patch
 -----
 
-		وصله
+	وصله
 
 platform
 --------
 
-		platform
+	platform
 		
 pull
 ----
 
-		pull
+	pull
 
 push
 ----
 
-		push
+	push
 
 remote repository
 -----------------
 
-		مخزن خارجی
+	مخزن خارجی
 
 repository
 ----------
 
-		مخزن
+	مخزن
 		
 resolved
 --------
 
-		resolved
+	resolved
 
 revision
 --------
 
-		نسخه
+	نسخه
 
 snapshot
 --------
 
-		تصویر لحظه‌ای
+	تصویر لحظه‌ای
 		
 staged
 ------
 
-		staged
+	staged
 
 staging area
 ------------
 
-		staging area
+	staging area
 
 state
 -----
 
-		وضعیت
+	وضعیت
 		
 tracked
 -------
 
-		ردگیری شده
+	ردگیری شده
 
 tracking
 --------
 
-		ردگیری
+	ردگیری
 		
 unstaged
 --------
 
-		unstaged
+	unstaged
 		
 untracked
 ---------
 
-		ردگیری نشده
+	ردگیری نشده
 
 version
 -------
 
-		نسخه
+	نسخه
 
 workflow
 --------
 
-		جریان کاری
+	جریان کاری
 
 working directory
 -----------------
 
-		پوشه در حال کار
+	پوشه در حال کار

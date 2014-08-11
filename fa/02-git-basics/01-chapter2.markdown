@@ -152,24 +152,24 @@ Insert 18333fig0201.png
 	
 ### نادیده گرفتن فایلها ###
 
-Often, you’ll have a class of files that you don’t want Git to automatically add or even show you as being untracked. These are generally automatically generated files such as log files or files produced by your build system. In such cases, you can create a file listing patterns to match them named `.gitignore`.  Here is an example `.gitignore` file:
+معمولاً دسته ای از فایلها وجود دارند که نه نیاز به آن است که Git به صورت خودکار آنها را اضافه کند و نه اینکه دائماً به عنوان فایلهای ردگیری نشده نمایش داده شوند.این فایلها عموماً یا فایلهای log هستند و یا فایلهایی هستند که توسط سیستم در حین مراحل ساخت پروژه ایجاد میشوند. در این موارد، با ساختن لیستی از ساختار اینگونه فایلها و قرار دادن این لیست در فایلی با نام `.gitignore` به این هدف دست یافت. نمونه ای از فایل `.gitignore` در ذیل آورده شده است:
 
 	$ cat .gitignore
 	*.[oa]
 	*~
 
-The first line tells Git to ignore any files ending in `.o` or `.a` — *object* and *archive* files that may be the product of building your code. The second line tells Git to ignore all files that end with a tilde (`~`), which is used by many text editors such as Emacs to mark temporary files. You may also include a `log`, `tmp`, or `pid` directory; automatically generated documentation; and so on. Setting up a `.gitignore` file before you get going is generally a good idea so you don’t accidentally commit files that you really don’t want in your Git repository.
+در سطر اول Git تمامی فایلهایی که با `.o` یا `.a` به پایان میرسند نادیده میگیرد. — فایلهای *object* و *archive* که احتمالاً حاصل ساخته شدن کد هستند. در سطر دوم Git تمامی فایلهایی که با حرف tilde (`~`) به پایان میرسند نادیده میگیرد، که در بسیاری از ویرایشگرهای متنی برای نشانه گذاری فایلهای موقت استفاده میگردد. شاید نیاز باشد پوشه های `log`، `tmp` یا `pid`؛ مستنداتی که به صورت خودکار تولید میشوند؛ و مواردی مشابه نیز در این لیست قرار گیرند. ایجاد و تنظیم فایل `.gitignore` قبل از شروع پروژه میتواند ایده مناسبی باشد زیرا از commit تصادفی فایلهای ناخواسته در مخزن Git پیشگیری میکند.
 
-The rules for the patterns you can put in the `.gitignore` file are as follows:
+قواعد ایجاد ساختار برای قرار گرفتن در فایل `.gitignore` به شرح ذیل هستند:
 
-*	Blank lines or lines starting with `#` are ignored.
-*	Standard glob patterns work.
-*	You can end patterns with a forward slash (`/`) to specify a directory.
-*	You can negate a pattern by starting it with an exclamation point (`!`).
+*     سطرهای تهی و سطرهایی که با `#` شروع میشوند نادیده گرفته میشوند.
+*     ساختارهای جامع استاندارد.
+*     برای مشخص کردن پوشه میتوان از علامت slash (`/`) در انتهای ساختار استفاده کرد.
+*     با اضافه کردن علامت exclamation point (`!`) در ابتدای یک ساختار، نقیص ساختار مربوطه در نظر گرفته میشود.
 
-Glob patterns are like simplified regular expressions that shells use. An asterisk (`*`) matches zero or more characters; `[abc]` matches any character inside the brackets (in this case `a`, `b`, or `c`); a question mark (`?`) matches a single character; and brackets enclosing characters separated by a hyphen(`[0-9]`) matches any character in the range (in this case 0 through 9) .
+ساختارهای جامع همان ساده شده ساختارهای باقاعده میباشند که در پوسته ها استفاده میشوند. ستاره (`*`) مطابق با تعداد صفر و یا بزرگتر از صفر کاراکتر است؛ `[abc]` با کاراکترهای موجود در کروشه تطابق دارد (که در این مثال مطابق با `a`، `b` یا `c` است)؛ علامت سؤال (`?`) با یک کاراکتر نطابق دارد؛ و کاراکترهای داخل کروشه که با خط تیره از هم جدا شده اند (`[0-9]`) تطابق با کاراکترهای موجود در بازه مربوطه دارند (در این مثال از 0 تا 9).
 
-Here is another example `.gitignore` file:
+در ذیل مثال دیگری از فایل `.gitignore` آورده شده است:
 
 	# a comment - this is ignored
 	# no .a files
@@ -185,13 +185,13 @@ Here is another example `.gitignore` file:
 	# ignore all .txt files in the doc/ directory
 	doc/**/*.txt
 
-A `**/` pattern is available in Git since version 1.8.2.
+ساختار `**/` از نسخه 1.8.2 به بعد در Git قرار گرفته است.
 
-### Viewing Your Staged and Unstaged Changes ###
+### مشاهده تغییرات Stage شده و Stage نشده ###
 
-If the `git status` command is too vague for you — you want to know exactly what you changed, not just which files were changed — you can use the `git diff` command. We’ll cover `git diff` in more detail later; but you’ll probably use it most often to answer these two questions: What have you changed but not yet staged? And what have you staged that you are about to commit? Although `git status` answers those questions very generally, `git diff` shows you the exact lines added and removed — the patch, as it were.
+اگر دستور `git status` برای شما بیش از حد مبهم است — نه تنها میخواهید بدانید کدام فایلهای تغییر پیدا کرده اند، بلکه میخواهید از تغییرات انجام شده نیز اطلاع حاصل کنید — میتوانید از دستور `git diff` استفاده کنید. در ادامه در مورد دستور `git diff` جزئیات بیشتری ذکر خواهد شد؛ ولی معمولاً در اکثر مواقع از آن برای پاسخ دادن به دو سؤال استفاده میشود: چه چیزهایی تغییر یافته اند ولی هنوز stage نشده اند؟ و چه چیزهایی stage شده اند و قرار است در commit قرار گیرند؟ با وجود آنکه `git status` به این دو سؤال به صورت کلی پاسخ میدهد، ولی `git diff` دقیقاً مشخص میکند کدام سطرها اضافه یا حذف شده اند — در واقع وصله ها را مشخص میکند.
 
-Let’s say you edit and stage the `README` file again and then edit the `benchmarks.rb` file without staging it. If you run your `status` command, you once again see something like this:
+فرض کنید فایل `README` هم اصلاح و هم stage شده است و بعد از آن فایل `benchmarks.rb` اصلاح شده ولی هنوز stage نشده است. اگر دستور `status` اجرا شود، خروجی مشابه ذیل خواهیم داشت:
 
 	$ git status
 	On branch master
@@ -205,9 +205,8 @@ Let’s say you edit and stage the `README` file again and then edit the `benchm
 	  (use "git checkout -- <file>..." to discard changes in working directory)
 	
 	        modified:   benchmarks.rb
-	
 
-To see what you’ve changed but not yet staged, type `git diff` with no other arguments:
+با اجرای `git diff` بدون هیچ گزینه ای، تغییرات انجام گرفته ولی stage نشده نمایش داده میشوند:
 
 	$ git diff
 	diff --git a/benchmarks.rb b/benchmarks.rb
@@ -226,9 +225,9 @@ To see what you’ve changed but not yet staged, type `git diff` with no other a
 	           log = git.commits('master', 15)
 	           log.size
 
-That command compares what is in your working directory with what is in your staging area. The result tells you the changes you’ve made that you haven’t yet staged.
+این دستور پوشه در حال کار را با staging area مقایسه میکند. نتیجه این مقایسه نمایش تغییراتی خواهد بود که انجام گرفته ولی هنوز stage نشده است.
 
-If you want to see what you’ve staged that will go into your next commit, you can use `git diff --cached`. (In Git versions 1.6.1 and later, you can also use `git diff --staged`, which may be easier to remember.) This command compares your staged changes to your last commit:
+برای مشاهده تغییراتی که stage شده اند و در commit بعدی قرار میگیرند، از دستور `git diff --cached` استفاده میشود. (در نسخه 1.6.1 به بعد Git از دستور `git diff --staged` نیز میتوان استفاده کرد، که به خاطر سپاری آن نیز ساده تر است.) این دستور تغییرات stage شده را با آخرین commit مقایسه میکند:
 
 	$ git diff --cached
 	diff --git a/README b/README
@@ -243,9 +242,9 @@ If you want to see what you’ve staged that will go into your next commit, you 
 	+
 	+Grit is a Ruby library for extracting information from a Git repository
 
-It’s important to note that `git diff` by itself doesn’t show all changes made since your last commit — only changes that are still unstaged. This can be confusing, because if you’ve staged all of your changes, `git diff` will give you no output.
+ذکر این نکته اهمیت دارد که `git diff` به خودی خود تمامی تغییراتی را که از آخرین commit انجام گرفته است نمایش نمیدهد — تنها تغییراتی را نمایش میدهد که هنوز stage نشده اند. امکان دارد این موضوع گیج کننده به نظر برسد، زیرا با stage کردن تمامی تغییرات، `git diff` خروجی نخواهد داشت.
 
-For another example, if you stage the `benchmarks.rb` file and then edit it, you can use `git diff` to see the changes in the file that are staged and the changes that are unstaged:
+مثالی دیگر، اگر فایل `benchmarks.rb` را stage  و سپس اصلاح کنید، با اجرای `git diff` تغییراتی که stage شده اند و همچنین تغییراتی که stage نشده اند را میتوانید مشاهده کنید:
 
 	$ git add benchmarks.rb
 	$ echo '# test line' >> benchmarks.rb
@@ -262,8 +261,7 @@ For another example, if you stage the `benchmarks.rb` file and then edit it, you
 	
 	        modified:   benchmarks.rb
 	
-
-Now you can use `git diff` to see what is still unstaged
+حال با استفاده از `git diff` تغییراتی که هنوز stage نشده اند را میتوانید مشاهد کنید
 
 	$ git diff
 	diff --git a/benchmarks.rb b/benchmarks.rb
@@ -276,7 +274,7 @@ Now you can use `git diff` to see what is still unstaged
 	 ##pp Grit::GitRuby.cache_client.stats
 	+# test line
 
-and `git diff --cached` to see what you’ve staged so far:
+و `git diff --cached` تغییراتی که تا به الان stage شده اند را نمایش میدهد:
 
 	$ git diff --cached
 	diff --git a/benchmarks.rb b/benchmarks.rb
@@ -295,7 +293,7 @@ and `git diff --cached` to see what you’ve staged so far:
 	          log = git.commits('master', 15)
 	          log.size
 
-### Committing Your Changes ###
+### Commit کردن تغییرات ###
 
 Now that your staging area is set up the way you want it, you can commit your changes. Remember that anything that is still unstaged — any files you have created or modified that you haven’t run `git add` on since you edited them — won’t go into this commit. They will stay as modified files on your disk.
 In this case, the last time you ran `git status`, you saw that everything was staged, so you’re ready to commit your changes. The simplest way to commit is to type `git commit`:
