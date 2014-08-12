@@ -295,14 +295,14 @@ Insert 18333fig0201.png
 
 ### Commit کردن تغییرات ###
 
-Now that your staging area is set up the way you want it, you can commit your changes. Remember that anything that is still unstaged — any files you have created or modified that you haven’t run `git add` on since you edited them — won’t go into this commit. They will stay as modified files on your disk.
-In this case, the last time you ran `git status`, you saw that everything was staged, so you’re ready to commit your changes. The simplest way to commit is to type `git commit`:
+حال که staging area همانطور که مدنظر شما بوده آماده شده است، میتوان شروع به commit تغییرات کرد. به یاد داشته باشید، هر چیز که ردگیری نشده باشد — فایلهایی که ایجاد یا اصلاح شده اند و از آن زمان تا به حال دستور `git add` برروی آن اجرا نشده است — در commit قرار نمیگیرد. این فایلها همچنان به صورت اصلاح شده روی دیسک باقی خواهند ماند.
+در این مورد، آخرین مرتبه ای که `git status` اجرا گردید، مشاهده شد که همه فایلها stage شده بودند، بنابراین زمینه برای commit تغییرات محیا است. ساده ترین روش برای انجام commit تایپ `git commit` است:
 
 	$ git commit
 
-Doing so launches your editor of choice. (This is set by your shell’s `$EDITOR` environment variable — usually vim or emacs, although you can configure it with whatever you want using the `git config --global core.editor` command as you saw in *Chapter 1*).
+با انجام این عمل ویرایشگر انتخابی شما فراخوانی میشود. (این ویرایشگر توسط متغیر محیطی `$EDITOR` پوسته شناسایی و تنظیم میشود — که معمولاً vim یا emacs است، البته امکان تنظیم آن همانطور که در *فصل 1* نشان داده شد به کمک دستور `git config --global core.editor` به دلخواه کاربر وجود دارد).
 
-The editor displays the following text (this example is a Vim screen):
+در ویرایشگر، متن ذیل نمایش داده میشود (در این مثال تصویری از ویرایشگر Vim نمایش داده شده است):
 
 	# Please enter the commit message for your changes. Lines starting
 	# with '#' will be ignored, and an empty message aborts the commit.
@@ -316,20 +316,20 @@ The editor displays the following text (this example is a Vim screen):
 	~
 	".git/COMMIT_EDITMSG" 10L, 283C
 
-You can see that the default commit message contains the latest output of the `git status` command commented out and one empty line on top. You can remove these comments and type your commit message, or you can leave them there to help you remember what you’re committing. (For an even more explicit reminder of what you’ve modified, you can pass the `-v` option to `git commit`. Doing so also puts the diff of your change in the editor so you can see exactly what you did.) When you exit the editor, Git creates your commit with that commit message (with the comments and diff stripped out).
+همانطور که مشاهده میکنید پیغام پیش فرض commit، آخرین خروجی اجرای دستور `git status` است که به صورت توضیح آورده شده است و یک سطر تهی در بالای آن قرار دارد. شما این انتخاب را دارید که توضیحات را حذف و پیغام commit خود را درج کنید یا اینکه جهت فراموش نکردن محتویات commitای که در حال اعمال آن هستید تغییری در پیغام پیش فرض انجام ندهید. (برای مشخص شدن دقیقتر اصلاحات انجام شده میتوان دستور `git commit` را با گزینه `-v` اجرا کرد. در این حالت diff تغییرات نیز در ویرایشگر قرار میگیرد تا کاربر بتواند جزئیات را نیز مشاهده کند.) هنگامی که از ویرایشگر خارج میشوید، Git commitای را با پیغام تایپ شده ایجاد میکند (البته توضیحات و diff از پیغام حذف شده اند). 
 
-Alternatively, you can type your commit message inline with the `commit` command by specifying it after a `-m` flag, like this:
+روشی دیگر برای انجام commit استفاده از گزینه `-m` به همراه متن commit در دستور `commit` است، مانند:
 
 	$ git commit -m "Story 182: Fix benchmarks for speed"
 	[master 463dc4f] Story 182: Fix benchmarks for speed
 	 2 files changed, 3 insertions(+)
 	 create mode 100644 README
 
-Now you’ve created your first commit! You can see that the commit has given you some output about itself: which branch you committed to (`master`), what SHA-1 checksum the commit has (`463dc4f`), how many files were changed, and statistics about lines added and removed in the commit.
+اولین commit ایجاد گردید! همانطور که مشاهده میشود، commit اطلاعاتی نیز در خروجی نمایش میدهد: انشعابی که commit روی آن انجام گرفت (`master`)، ُSHA-1 checksum commit انجام گرفته (`463dc4f`)، تعداد فایلهای تغییر یافته، و داده های آماری در مورد تعداد سطرهای اضافه و حذف شده در commit.
 
-Remember that the commit records the snapshot you set up in your staging area. Anything you didn’t stage is still sitting there modified; you can do another commit to add it to your history. Every time you perform a commit, you’re recording a snapshot of your project that you can revert to or compare to later.
+توجه کنید که commit تصویر لحظه ای از staging area پیاده سازی شده را ذخیره میکند. هر آنچه که هنوز stage نشده است کماکان در قالب اصلاح شده باقی خواهد ماند؛ البته با انجام commitای دیگر امکان اضافه کردن آن نیز به تاریخچه پروژه وجود دارد. هرگاه که commitای انجام میپذیرد، تصویر لحظه ای از پروژه ذخیره میشود که امکان بازگردانی و یا مقایسه آن با دیگر نسخه ها را فراهم میسازد.
 
-### Skipping the Staging Area ###
+### پرش از Staging Area ###
 
 Although it can be amazingly useful for crafting commits exactly how you want them, the staging area is sometimes a bit more complex than you need in your workflow. If you want to skip the staging area, Git provides a simple shortcut. Providing the `-a` option to the `git commit` command makes Git automatically stage every file that is already tracked before doing the commit, letting you skip the `git add` part:
 
