@@ -331,7 +331,7 @@ Insert 18333fig0201.png
 
 ### پرش از Staging Area ###
 
-Although it can be amazingly useful for crafting commits exactly how you want them, the staging area is sometimes a bit more complex than you need in your workflow. If you want to skip the staging area, Git provides a simple shortcut. Providing the `-a` option to the `git commit` command makes Git automatically stage every file that is already tracked before doing the commit, letting you skip the `git add` part:
+با وجود آنکه بحث stage جهت اعمال commit دقیقاً به همان شکلی که مدنظر کاربر است  به صورت باورنکردنی میتواند مفید واقع شود، ولیکن staging area میتواند در جریان کاری قدری پیچیدگی ایجاد کند. اگر میخواهید از staging area پرش کنید، Git مسیر میانبری را فراهم کرده است. با اجرای دستور `git commit` به همراه گزینه `-a` به صورت خودکار Git تمامی فایلهایی که ردگیری شده اند را قبل از انجام commit در حالت stage قرار میدهد، بدین گونه کاربر دیگر نیازی به اجرای دستور `git add` ندارد:
 
 	$ git status
 	On branch master
@@ -346,13 +346,13 @@ Although it can be amazingly useful for crafting commits exactly how you want th
 	[master 83e38c7] added new benchmarks
 	 1 files changed, 5 insertions(+)
 
-Notice how you don’t have to run `git add` on the `benchmarks.rb` file in this case before you commit.
+به این نکته توجه کنید که در این مورد قبل از انجام commit دستور `git add` برروی فایل `benchmarks.rb` اجرا نشد.
 
-### Removing Files ###
+### حذف فایلها ###
 
-To remove a file from Git, you have to remove it from your tracked files (more accurately, remove it from your staging area) and then commit. The `git rm` command does that and also removes the file from your working directory so you don’t see it as an untracked file next time around.
+جهت حذف فایل از Git، میبایستی فایل مذکور از لیست فایلهای ردگیری شده حذف شود (به عبارت دقیق تر از staging area حذف شود) و سپس commit انجام گیرد. دستور `git rm` این عمل را انجام میدهد و همچنین فایل مذکور را از پوشه در حال کار نیز حذف میکند تا در مراحل بعدی در لیست فایلهای ردگیری نشده نمایش داده نشود.
 
-If you simply remove the file from your working directory, it shows up under the “Changes not staged for commit” (that is, _unstaged_) area of your `git status` output:
+اگر فایل از پوشه در حال کار به صورت دستی حذف شود، در خروجی `git status` در بخش ”Changes not staged for commit“ (یعنی _stage نشده_) نمایش داده میشود:
 
 	$ rm grit.gemspec
 	$ git status
@@ -365,7 +365,7 @@ If you simply remove the file from your working directory, it shows up under the
 	
 	no changes added to commit (use "git add" and/or "git commit -a")
 
-Then, if you run `git rm`, it stages the file’s removal:
+حال اگر `git rm` اجرا شود، حذف فایل، stage میشود:
 
 	$ git rm grit.gemspec
 	rm 'grit.gemspec'
@@ -376,32 +376,31 @@ Then, if you run `git rm`, it stages the file’s removal:
 	
 	        deleted:    grit.gemspec
 	
+در مراحل بعدی که commit انجام میگیرد، فایل حذف شده است و دیگر ردگیری نمیشود. اگر فایل اصلاح شده و به نشانه گر اضافه شده باشد، بایستی با استفاده از گزینه `-f` عمل حذف را تحمیل کرد. چنین قابلیت جنبه امنیتی داشته و از حذف تصادفی داده هایی که در تصویر لحظه ای ذخیره نشده اند و امکان بازیابی آنها در Git وجود ندارد، پیشگیری میکند.
 
-The next time you commit, the file will be gone and no longer tracked. If you modified the file and added it to the index already, you must force the removal with the `-f` option. This is a safety feature to prevent accidental removal of data that hasn’t yet been recorded in a snapshot and that can’t be recovered from Git.
-
-Another useful thing you may want to do is to keep the file in your working tree but remove it from your staging area. In other words, you may want to keep the file on your hard drive but not have Git track it anymore. This is particularly useful if you forgot to add something to your `.gitignore` file and accidentally staged it, like a large log file or a bunch of `.a` compiled files. To do this, use the `--cached` option:
+امکان دارد که کاربر قصد نگهداری فایلی را در درخت کاری خود داشته باشد ولی میخواهد فایل مذکور از staging area حذف شود. به عبارت دیگر، کاربر تصمیم به حفظ فایل را دارد ولی دیگر نمیخواهد Git آن را ردگیری کند. این وضعیت زمانی پیش می آید که شخص فراموش کرده است که فایل مذکور را به `.gitignore` اضافه کند و تصادفاً آن را stage کرده است، به عنوان نمونه این فایل میتواند یک فایل log حجیم یا مجموعه ای از فایلهای کامپایل با پسوند `.a` باشد. برای انجام این عمل از گزینه `--cached` استفاده میشود:
 
 	$ git rm --cached readme.txt
 
-You can pass files, directories, and file-glob patterns to the `git rm` command. That means you can do things such as
+به دستور `git rm` میتوان فایل، پوشه و ساختار جامع فایل را ارسال کرد. یعنی امکان اجرای دستور ذیل وجود دارد:
 
 	$ git rm log/\*.log
 
-Note the backslash (`\`) in front of the `*`. This is necessary because Git does its own filename expansion in addition to your shell’s filename expansion. On Windows with the system console, the backslash must be omitted. This command removes all files that have the `.log` extension in the `log/` directory. Or, you can do something like this:
+به backslash (`\`) قبل از `*` دقت کنید. تایپ این کاراکتر الزامی است زیرا نه تنها پوسته توسعه نام فایل را انجام میدهد، بلکه Git نیز توسعه نام فایل مخصوص به خود را دارد. در سیستم خط فرمان ویندوز، backslash باید حذف شود. این دستور موجب میشود تا تمامی فایلهای داخل پوشه `log/` که با پسوند `.log` خاتمه پیدا میکنند حذف شوند. یا میتوان به صورت ذیل عمل کرد:
 
 	$ git rm \*~
 
-This command removes all files that end with `~`.
+این دستور تمای فایلهایی که به `~` ختم میشوند را حذف میکند.
 
-### Moving Files ###
+### جابجایی فایلها ###
 
-Unlike many other VCS systems, Git doesn’t explicitly track file movement. If you rename a file in Git, no metadata is stored in Git that tells it you renamed the file. However, Git is pretty smart about figuring that out after the fact — we’ll deal with detecting file movement a bit later.
+Git برخلاف اکثریت دیگر سیستمهای VCS، به صورت مستقیم جابجایی فایل را ردگیری نمیکند. اگر شما نام فایلی را در Git تغییر دهید، هیچ metadataای مبنی بر اینکه شما ایجاد کننده این تغییر بوده اید ذخیره نمیشود. البته، Git با هوشمندی این موضوع را بعد از انجام تشخیص میدهد — در ادامه موضوع جابجایی فایل نیز بررسی خواهد شد.
 
-Thus it’s a bit confusing that Git has a `mv` command. If you want to rename a file in Git, you can run something like
+بنابراین این موضوع که Git دستور `mv` دارد کمی گیج کننده است. نام یک فایل را در Git میتوان به صورت ذیل تغییر داد:
 
 	$ git mv file_from file_to
 
-and it works fine. In fact, if you run something like this and look at the status, you’ll see that Git considers it a renamed file:
+و به درستی اجرا خواهد شد. در واقع اگر چنین دستوری را اجرا کنید و به خروجی status نگاهی بیندازید، مشاهده خواهید کرد که Git آن را تحت عنوان فایل تغییر نام یافته نمایش میدهد:
 
 	$ git mv README README.txt
 	$ git status
@@ -412,15 +411,16 @@ and it works fine. In fact, if you run something like this and look at the statu
 	        renamed:    README -> README.txt
 	
 
-However, this is equivalent to running something like this:
+
+به هرحال، دستور ذیل مشابه دستور فوق است:
 
 	$ mv README README.txt
 	$ git rm README
 	$ git add README.txt
 
-Git figures out that it’s a rename implicitly, so it doesn’t matter if you rename a file that way or with the `mv` command. The only real difference is that `mv` is one command instead of three — it’s a convenience function. More important, you can use any tool you like to rename a file, and address the add/rm later, before you commit.
+یGit تغییر نام را به صورت غیر مستقیم تشخیص میدهد، بنابراین این روش تغییر نام با روش استفاده از دستور `mv` تفاوتی ندارد. تنها تفاوت آن این است که دستور `mv` تنها یک دستور است در حالیکه روش دیگر با سه دستور انجام میپذیرد — آسانتر انجام میپذیرد. مهمتر از آن میتوان با هر ابزاری تغییر نام را انجام داد، و سپس add/rm را قبل از اعمال commit انجام داد.
 
-## Viewing the Commit History ##
+## مشاهده تاریخچه Commit ##
 
 After you have created several commits, or if you have cloned a repository with an existing commit history, you’ll probably want to look back to see what has happened. The most basic and powerful tool to do this is the `git log` command.
 
