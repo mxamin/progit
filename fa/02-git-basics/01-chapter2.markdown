@@ -422,13 +422,13 @@ Git برخلاف اکثریت دیگر سیستمهای VCS، به صورت مس
 
 ## مشاهده تاریخچه Commit ##
 
-After you have created several commits, or if you have cloned a repository with an existing commit history, you’ll probably want to look back to see what has happened. The most basic and powerful tool to do this is the `git log` command.
+بعد از ایجاد commitهای مختلف، یا clone گرفتن از مخزنی که دارای تاریخچه ای از commit است، شاید نیاز داشته باشید تا نگاهی به اتفاقات انجام گرفته بیندازید. ساده ترین و در عین حال قویترین ابزار برای این منظور دستور `git log` است.
 
-These examples use a very simple project called `simplegit` that I often use for demonstrations. To get the project, run
+در این مثالها از پروژه ساده ای با نام `simplegit` استفاده شده است که من معمولاً برای ارائه از آن استفاده میکنم. برای دریافت پروژه دستور ذیل را تایپ کنید
 
 	git clone git://github.com/schacon/simplegit-progit.git
 
-When you run `git log` in this project, you should get output that looks something like this:
+با اجرای `git log` در این پروژه، خروجی مشابه ذیل را مشاهده خواهید کرد:
 
 	$ git log
 	commit ca82a6dff817ec66f44342007202690a93763949
@@ -449,11 +449,11 @@ When you run `git log` in this project, you should get output that looks somethi
 
 	    first commit
 
-By default, with no arguments, `git log` lists the commits made in that repository in reverse chronological order. That is, the most recent commits show up first. As you can see, this command lists each commit with its SHA-1 checksum, the author’s name and e-mail, the date written, and the commit message.
+به صورت پیش فرض، بدون استفاده از هیچ گزینه ای، `git log` لیستی از commitهای مخزن را عکس ترتیب زمانی وقوع نمایش میدهد. بدین صورت که آخرین commitها در صدر لیست  قرار میگیرند. همانطور که مشاهده میکنید این دستور هر commit را با SHA-1 checksum آن، نام و پست الکترونیکی مؤلف، تاریخ نگارش و پیغام commit نمایش میدهد.
 
-A huge number and variety of options to the `git log` command are available to show you exactly what you’re looking for. Here, we’ll show you some of the most-used options.
+گزینه های بسیار زیاد و مختلفی برای `git log` در نظر گرفته شده است که خروجی دستور همان چیزی باشد که مدنظر کاربر است. در این بخش تعدادی از پر کاربردترین این گزینه ها آورده شده است.
 
-One of the more helpful options is `-p`, which shows the diff introduced in each commit. You can also use `-2`, which limits the output to only the last two entries:
+یکی از مفیدترین گزینه ها، `-p` است، که diff را نیز در هر commit نمایش میدهد. امکان استفاده گزینه `-2` نیز وجود دارد که خروجی را محدود به آخرین دو رکورد میکند:
 
 	$ git log -p -2
 	commit ca82a6dff817ec66f44342007202690a93763949
@@ -495,7 +495,7 @@ One of the more helpful options is `-p`, which shows the diff introduced in each
 	-end
 	\ No newline at end of file
 
-This option displays the same information but with a diff directly following each entry. This is very helpful for code review or to quickly browse what happened during a series of commits that a collaborator has added.
+این گزینه اطلاعات مشابهی را نمایش میدهد، با این تفاوت که بلافاصله بعد از هر رکورد diff آن نیز قرار داده میشود. این گزینه جهت مرور کد یا مشاهده سریع اتفاقات در سری از commitهای اعمال شده توسط هماکاران بسیار مفید است.
 
 Sometimes it's easier to review changes on the word level rather than on the line level. There is a `--word-diff` option available in Git, that you can append to the `git log -p` command to get word diff instead of normal line by line diff. Word diff format is quite useless when applied to source code, but it comes in handy when applied to large text files, like books or your dissertation. Here is an example:
 
