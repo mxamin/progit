@@ -497,7 +497,7 @@ Git برخلاف اکثریت دیگر سیستمهای VCS، به صورت مس
 
 این گزینه اطلاعات مشابهی را نمایش میدهد، با این تفاوت که بلافاصله بعد از هر رکورد diff آن نیز قرار داده میشود. این گزینه جهت مرور کد یا مشاهده سریع اتفاقات در سری از commitهای اعمال شده توسط هماکاران بسیار مفید است.
 
-Sometimes it's easier to review changes on the word level rather than on the line level. There is a `--word-diff` option available in Git, that you can append to the `git log -p` command to get word diff instead of normal line by line diff. Word diff format is quite useless when applied to source code, but it comes in handy when applied to large text files, like books or your dissertation. Here is an example:
+گاهاً مرور تغییرات در سطح کلمه آسانتر از سطح سطر است. با اضافه کردن گزینه `--word-diff` به انتهای دستور `git log -p` در عوض نمایش diff به صورت خط به خط، diff براساساس کلمات انجام میگیرد. اعمال قالب diff کلمه برروی کد منبع امری بی فایده است، ولی اعمال آن برروی فایلهای متنی بزرگ مانند کتاب یا پایان نامه بسیار کاربردی میباشد. مثالی در این رابطه در ذیل آورده شده است:
 
 	$ git log -U1 --word-diff
 	commit ca82a6dff817ec66f44342007202690a93763949
@@ -515,9 +515,10 @@ Sometimes it's easier to review changes on the word level rather than on the lin
 	    s.version   =   [-"0.1.0"-]{+"0.1.1"+}
 	    s.author    =   "Scott Chacon"
 
-As you can see, there is no added and removed lines in this output as in a normal diff. Changes are shown inline instead. You can see the added word enclosed in `{+ +}` and removed one enclosed in `[- -]`. You may also want to reduce the usual three lines context in diff output to only one line, as the context is now words, not lines. You can do this with `-U1` as we did in the example above.
+همانطور که مشاهده میشود، برخلاف حالت عادی diff اضافه یا حذف شدن سطری در خروجی نمایش داده نشده است. در عوض تغییرات در یک سطر آورده شده اند. کلمه اضافه شده در `{+ +}` و کلمه حذف شده در `[- -]` قرار داده شده است. حال که مبنا بر اساس کلمات است، شاید نیاز باشد سه سطر محتوای خروجی diff به یک سطر تقلیل پیدا کند.همانگونه که در مثال فوق آورده شده است  با اضافه کردن گزینه `U1` این امر محقق خواهد شد.
 
-You can also use a series of summarizing options with `git log`. For example, if you want to see some abbreviated stats for each commit, you can use the `--stat` option:
+به همراه دستور `git log` امکان استفاده از گزینه های خلاصه کننده نیز وجود دارد. به عنوان مثال با استفاده از گزینه `--stat` خلاصه وضعیت هر commit نیز در خروجی آورده میشود:
+
 
 	$ git log --stat
 	commit ca82a6dff817ec66f44342007202690a93763949
@@ -549,7 +550,10 @@ You can also use a series of summarizing options with `git log`. For example, if
 	 lib/simplegit.rb |   25 +++++++++++++++++++++++++
 	 3 files changed, 54 insertions(+)
 
-As you can see, the `--stat` option prints below each commit entry a list of modified files, how many files were changed, and how many lines in those files were added and removed. It also puts a summary of the information at the end.
+همانطور که مشاهده میشود، با استفاده از گزینه `--stat` لیستی از فایلهای اصلاح شده، تعداد فایلهای تغییر یافته، تعداد سطور اضافه و حذف شده فایلها در هر رکورد commit ذکر میشود. همچنین خلاصه ای از این اطلاعات در انتهای رکورد درج میوشد.
+
+
+
 Another really useful option is `--pretty`. This option changes the log output to formats other than the default. A few prebuilt options are available for you to use. The `oneline` option prints each commit on a single line, which is useful if you’re looking at a lot of commits. In addition, the `short`, `full`, and `fuller` options show the output in roughly the same format but with less or more information, respectively:
 
 	$ git log --pretty=oneline
