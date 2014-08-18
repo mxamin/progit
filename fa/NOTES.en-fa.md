@@ -60,6 +60,16 @@ diff
 ----
 
 	diff
+
+format
+------
+
+	ساختار، قالب
+
+hash
+----
+
+	hash
 		
 ignore
 ------
@@ -110,6 +120,11 @@ modified
 --------
 
 	اصلاح شده
+
+parse
+-----
+
+	تحلیل
 		
 reference
 ---------

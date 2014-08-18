@@ -552,49 +552,48 @@ Git برخلاف اکثریت دیگر سیستمهای VCS، به صورت مس
 
 همانطور که مشاهده میشود، با استفاده از گزینه `--stat` لیستی از فایلهای اصلاح شده، تعداد فایلهای تغییر یافته، تعداد سطور اضافه و حذف شده فایلها در هر رکورد commit ذکر میشود. همچنین خلاصه ای از این اطلاعات در انتهای رکورد درج میوشد.
 
-
-
-Another really useful option is `--pretty`. This option changes the log output to formats other than the default. A few prebuilt options are available for you to use. The `oneline` option prints each commit on a single line, which is useful if you’re looking at a lot of commits. In addition, the `short`, `full`, and `fuller` options show the output in roughly the same format but with less or more information, respectively:
+گزینه مفید دیگر `--pretty` است. این گزینه موجب تغییر خروجی log به ساختاری متفاوت از ساختار پیش فرض میشود. تعدادی گزینه از قبل ساخته شده برای استفاده وجود دارد. گزینه `oneline` موجب میشود تا خروجی هر commit در یک سطر نمایش داده شود، که جهت مشاهده تعداد زیادی از commitها مفید است. علاوه بر آن، گزینه های `short`، `full` و `fuller` خروجی تقریباً مشابهی البته با اطلاعاتی کمتر یا بیشتر تولید میکنند:
 
 	$ git log --pretty=oneline
 	ca82a6dff817ec66f44342007202690a93763949 changed the version number
 	085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7 removed unnecessary test code
 	a11bef06a3f659402fe7563abf99ad00de2209e6 first commit
 
-The most interesting option is `format`, which allows you to specify your own log output format. This is especially useful when you’re generating output for machine parsing — because you specify the format explicitly, you know it won’t change with updates to Git:
+شاید جالبترین گزینه، گزینه `format` است، که این امکان را فراهم میسازد تا خروجی log را خود کاربر مشخص کند. مهمترین استفاده این گزینه برای تولید خروجی جهت ماشینهای تحلیل است — زیرا ساختار به صورت مشخص و دقیق تنظیم میشود، و کاربر اطمینان دارد که با به روز رسانی Git تغییری در این ساختار رخ نمیدهد:
 
 	$ git log --pretty=format:"%h - %an, %ar : %s"
 	ca82a6d - Scott Chacon, 11 months ago : changed the version number
 	085bb3b - Scott Chacon, 11 months ago : removed unnecessary test code
 	a11bef0 - Scott Chacon, 11 months ago : first commit
 
-Table 2-1 lists some of the more useful options that format takes.
+در جدول 2-1 لیستی از پر کاربردترین گزینه های format آورده شده است.
 
 <!-- Attention to translators: this is a table declaration.
 The lines must be formatted as follows
 <TAB><First column text><TAB><Second column text>
 -->
 
-	Option	Description of Output
+	گزینه	توضیح خروجی
 	%H	Commit hash
-	%h	Abbreviated commit hash
-	%T	Tree hash
-	%t	Abbreviated tree hash
-	%P	Parent hashes
-	%p	Abbreviated parent hashes
-	%an	Author name
-	%ae	Author e-mail
-	%ad	Author date (format respects the --date= option)
-	%ar	Author date, relative
-	%cn	Committer name
-	%ce	Committer email
-	%cd	Committer date
-	%cr	Committer date, relative
-	%s	Subject
+	%h	commit hash خلاصه شده
+	%T	درخت hash
+	%t	درخت hash خلاصه شده
+	%P	hashهای پدر
+	%p	hashهای پدر خلاصه شده
+	%an	نام مؤلف
+	%ae	پست الکترونیکی مؤلف
+	%ad	تاریخ تألیف (با توجه به گزینه --date=)
+	%ar	تاریخ تألیف نسبی
+	%cn	نام commit کننده
+	%ce	پست الکترونیکی commit کننده
+	%cd	تاریخ commit کننده
+	%cr	تاریخ نسبی commit کننده
+	%s	عنوان
 
-You may be wondering what the difference is between _author_ and _committer_. The _author_ is the person who originally wrote the patch, whereas the _committer_ is the person who last applied the patch. So, if you send in a patch to a project and one of the core members applies the patch, both of you get credit — you as the author and the core member as the committer. We’ll cover this distinction a bit more in *Chapter 5*.
+شاید برای شما جالب باشد که تفاوت بین _مؤلف_ و _commit کننده_ چیست. _مؤلف کسی است که وصله را در ابتدا تولید کرده است، و _commit کننده_ شخصی است که در آخر وصله را اعمال کرده است. بنابراین اگر شما وصله ای را برای پروژه ای ارسال کنید و یکی از اعضای اصلی وصله شما را اعمال کند، نقش هر دو شما ذکر خواهد گردید — شما به عنوان مؤلف و عضو اصلی به عنوان اعمال کننده وصله. در *فصل 5* در مورد این تناظر بیشتر صحبت خواهد شد.
 
-The `oneline` and `format` options are particularly useful with another `log` option called `--graph`. This option adds a nice little ASCII graph showing your branch and merge history, which we can see in our copy of the Grit project repository:
+
+گزینه های `online` و `format` به همراه گزینه دیگری از `log` با نام `--graph` میتوانند مفید قرار گیرند. این گزینه گراف اسکی زیبایی از انشعاب و merge تاریخجه تولید میکند، که نمونه ای از اعمال آن روی کپی از مخزن پروژه Grit در ذیل آورده شده است:
 
 	$ git log --pretty=format:"%h %s" --graph
 	* 2d3acf9 ignore errors from SIGCHLD on trap
@@ -608,27 +607,27 @@ The `oneline` and `format` options are particularly useful with another `log` op
 	* d6016bc require time for xmlschema
 	*  11d191e Merge branch 'defunkt' into local
 
-Those are only some simple output-formatting options to `git log` — there are many more. Table 2-2 lists the options we’ve covered so far and some other common formatting options that may be useful, along with how they change the output of the `log` command.
+موارد ذکر شده تنها تعدادی از گزینه های ساختار-خروجی `git log` بودند — تعداد زیادی از این گزینه ها هنوز وجود دارد. در جدول 2-2 لیستی از گزینه هایی که تا به اینجا پوشش داده شده اند به همراه تعدادی دیگر از گزینه های ساختاری رایج آورده شده است. گزینه های که ممکن است مفید واقع شوند به همراه توضیحی از تغییری که در خروجی دستور `log` ایجاد میکنند.
 
 <!-- Attention to translators: this is a table declaration.
 The lines must be formatted as follows
 <TAB><First column text><TAB><Second column text>
 -->
 
-	Option	Description
-	-p	Show the patch introduced with each commit.
-	--word-diff	Show the patch in a word diff format.
-	--stat	Show statistics for files modified in each commit.
-	--shortstat	Display only the changed/insertions/deletions line from the --stat command.
-	--name-only	Show the list of files modified after the commit information.
-	--name-status	Show the list of files affected with added/modified/deleted information as well.
-	--abbrev-commit	Show only the first few characters of the SHA-1 checksum instead of all 40.
-	--relative-date	Display the date in a relative format (for example, “2 weeks ago”) instead of using the full date format.
-	--graph	Display an ASCII graph of the branch and merge history beside the log output.
-	--pretty	Show commits in an alternate format. Options include oneline, short, full, fuller, and format (where you specify your own format).
-	--oneline	A convenience option short for `--pretty=oneline --abbrev-commit`.
+	گزینه	توضیح
+	-p	نمایش وصله اعمال شده در هر commit.
+	--word-diff   نمایش وصله در قالب diff کلمه.
+	--stat	نمایش آماری فایلهای اصلاح شده در هر commit.
+	--shortstat   تنها نمایش سطور تغییر یافته/اضافه شده/حذف شده از دستور --stat.
+	--name-only   نمایش لیستی از فایلهای اصلاح شده بعد از نمایش اطلاعات commit.
+	--name-status نمایش لیستی از فایلهای تحت تأثیر به همراه اطلاعاتی از اضافات/اصلاحات/حذفیات.
+	--abbrev-commit	    تنها نمایش چند کاراکتر ابتدایی در عوض 40 کاراکتر SHA-1 checksum.
+	--relative-date	    نمایش نسبی تاریخ (به عنوان مثال، ”2 weeks ago“) در عوض نمایش کامل تاریخ.
+	--graph	نمایش گراف اسکی از انشعاب و merge تاریخجه در کنار خروجی log.
+	--pretty      نمایش commitها در ساختاری متفاوت. گزینه هایی که میتوانند مورد استفاده قرار گیرند شامل online، short، full، fuller و format (که ساختار آن را کاربر مشخص میکند).
+	--oneline     گزینه ای در دسترس و مشابه `--pretty=online --abbrev-commit`.
 
-### Limiting Log Output ###
+### محدود کردن خروجی Log ###
 
 In addition to output-formatting options, `git log` takes a number of useful limiting options — that is, options that let you show only a subset of commits. You’ve seen one such option already — the `-2` option, which shows only the last two commits. In fact, you can do `-<n>`, where `n` is any integer to show the last `n` commits. In reality, you’re unlikely to use that often, because Git by default pipes all output through a pager so you see only one page of log output at a time.
 
